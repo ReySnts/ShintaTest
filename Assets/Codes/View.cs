@@ -9,22 +9,16 @@ public class View : MonoBehaviour
     }
     void Start()
     {
-        CameraModel.controller.Setup();
+        CameraModel.singleton ??= new CameraModel();
+        PlayerModel.singleton ??= new PlayerModel();
+    }
+    void FixedUpdate()
+    {
+        PlayerModel.singleton.controller.FixedUpdateStatus();
     }
     void Update()
     {
-        CameraModel.singleton.xSpeed = Input.GetAxis("Mouse X") * CameraModel.singleton.sensitivity * Time.deltaTime;
-        CameraModel.singleton.ySpeed = Input.GetAxis("Mouse Y") * CameraModel.singleton.sensitivity * Time.deltaTime;
-        transform.localRotation = Quaternion.Euler
-        (
-            Mathf.Clamp
-            (
-                CameraModel.singleton.xAxis - CameraModel.singleton.ySpeed,
-                -90f,
-                90f
-            ),
-            0f,
-            0f
-        );
+        CameraModel.singleton.controller.UpdateRotation();
+        PlayerModel.singleton.controller.UpdateMovement();
     }
 }
