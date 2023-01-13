@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class View : MonoBehaviour
 {
     public static View singleton = null;
+    int buildIndex = 0;
     void Awake()
     {
         if (singleton == null) singleton = this;
@@ -9,16 +11,16 @@ public class View : MonoBehaviour
     }
     void Start()
     {
-        CameraModel.singleton ??= new CameraModel();
-        PlayerModel.singleton ??= new PlayerModel();
+        SceneModel.singleton ??= new SceneModel();
+        buildIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneModel.singleton.controller.AwakeAt(buildIndex);
     }
     void FixedUpdate()
     {
-        PlayerModel.singleton.controller.FixedUpdateStatus();
+        SceneModel.singleton.controller.FixedUpdateAt(buildIndex);
     }
     void Update()
     {
-        CameraModel.singleton.controller.UpdateRotation();
-        PlayerModel.singleton.controller.UpdateMovement();
+        SceneModel.singleton.controller.UpdateAt(buildIndex);
     }
 }

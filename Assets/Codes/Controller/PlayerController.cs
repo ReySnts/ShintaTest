@@ -23,7 +23,7 @@ public class PlayerController
                 );
             }
         }
-        else if (playerModel.velocity <= 0f) 
+        else if (playerModel.velocity < 0f) 
         {
             playerModel.hasJumped = false;
             playerModel.velocity = 0f;
@@ -48,7 +48,8 @@ public class PlayerController
                 playerTransform.right * Input.GetAxis("Horizontal") + 
                 playerTransform.forward * Input.GetAxis("Vertical")
             ) 
-            * playerModel.walkSpeed * Time.deltaTime
+            * playerModel.walkSpeed 
+            * Time.deltaTime
         );
     }
     public void UpdateMovement()
