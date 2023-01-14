@@ -12,6 +12,5 @@ public class CameraModel
     {
         controller = new CameraController();
         game_object = Camera.main.gameObject;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 }

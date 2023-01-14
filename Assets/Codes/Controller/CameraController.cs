@@ -24,15 +24,14 @@ public class CameraController
         cameraModel.xSpeed = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
         PlayerModel.singleton.game_object.transform.Rotate(Vector3.up * cameraModel.xSpeed);
     }
-    void Setup()
+    public void UpdateRotation()
+    {
+        RotateHorizontal();
+        RotateVertical();
+    }
+    public void Setup()
     {
         cameraModel = CameraModel.singleton;
         sensitivity = cameraModel.sensitivity;
-    }
-    public void UpdateRotation()
-    {
-        Setup();
-        RotateHorizontal();
-        RotateVertical();
     }
 }

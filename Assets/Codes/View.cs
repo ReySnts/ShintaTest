@@ -9,11 +9,11 @@ public class View : MonoBehaviour
         if (singleton == null) singleton = this;
         else if (singleton != this) Destroy(gameObject);
     }
-    void Start()
+    void OnEnable()
     {
-        SceneModel.singleton ??= new SceneModel();
+        SceneModel.singleton = new SceneModel();
         buildIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneModel.singleton.controller.AwakeAt(buildIndex);
+        SceneModel.singleton.controller.OnEnableAt(buildIndex);
     }
     void FixedUpdate()
     {

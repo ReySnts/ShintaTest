@@ -57,7 +57,7 @@ public class PlayerController
         MoveHorizontal();
         MoveVertical();
     }
-    void StateLanding()
+    public void FixedUpdateLanding()
     {
         playerModel.hasLanded = Physics.CheckSphere
         (
@@ -66,16 +66,11 @@ public class PlayerController
             3            
         );
     }
-    void Setup()
+    public void Setup()
     {
         playerModel = PlayerModel.singleton;
         playerTransform = playerModel.game_object.transform;
         characterController = playerModel.characterController;
         gravity = playerModel.gravity;
-    }
-    public void FixedUpdateStatus()
-    {
-        Setup();
-        StateLanding();
     }
 }

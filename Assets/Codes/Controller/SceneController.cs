@@ -1,16 +1,18 @@
 public class SceneController
 {
-    public void AwakeAt(int buildIndex)
+    public void OnEnableAt(int buildIndex)
     {
         switch(buildIndex)
         {
             case 0:
                 break;
             default:
-                PauseMenuModel.singleton ??= new PauseMenuModel();
-                PauseMenuModel.singleton.game_object.SetActive(false);
-                CameraModel.singleton ??= new CameraModel();
-                PlayerModel.singleton ??= new PlayerModel();
+                CameraModel.singleton = new CameraModel();
+                CameraModel.singleton.controller.Setup();
+                PlayerModel.singleton = new PlayerModel();
+                PlayerModel.singleton.controller.Setup();
+                PauseMenuModel.singleton = new PauseMenuModel();
+                PauseMenuModel.singleton.controller.Continue();
                 break;
         }
     }
@@ -21,7 +23,7 @@ public class SceneController
             case 0:
                 break;
             default:
-                PlayerModel.singleton.controller.FixedUpdateStatus();
+                PlayerModel.singleton.controller.FixedUpdateLanding();
                 break;
         }
     }
@@ -32,9 +34,9 @@ public class SceneController
             case 0:
                 break;
             default:
-                PauseMenuModel.singleton.controller.UpdateDelay();
                 CameraModel.singleton.controller.UpdateRotation();
                 PlayerModel.singleton.controller.UpdateMovement();
+                PauseMenuModel.singleton.controller.UpdateDelay();
                 break;
         }
     }
