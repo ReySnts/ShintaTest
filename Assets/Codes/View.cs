@@ -15,6 +15,10 @@ public class View : MonoBehaviour
         buildIndex = SceneManager.GetActiveScene().buildIndex;
         SceneModel.singleton.controller.OnEnableAt(buildIndex);
     }
+    void Start()
+    {
+        SceneModel.singleton.controller.StartAt(buildIndex);
+    }
     void FixedUpdate()
     {
         SceneModel.singleton.controller.FixedUpdateAt(buildIndex);

@@ -1,0 +1,11 @@
+{
+    "game_object":{"instanceID":-11520},
+    "characterController":{"instanceID":-11530},
+    "sphereTransform":{"instanceID":-11542},
+    "walkSpeed":15.0,
+    "jumpForce":5.0,
+    "gravity":-10.0,
+    "velocity":0.0,
+    "hasLanded":false,
+    "hasJumped":false
+}
